@@ -1,0 +1,18 @@
+{% extends 'app/layouts/main.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: start">
+    <h1>Entreprises</h1>
+    <a href="{% url 'create-entreprise' %}" role="button">Créer un entreprise</a>
+</div>
+{% for entreprise in entreprises %}
+    <div style="display: flex; justify-content: space-between; align-items: start">
+        <a href="{% url 'entreprise' entreprise.id %}">{{entreprise}}</a>
+        <div style="display: flex; gap: 2rem">
+            <a href="{% url 'update-entreprise' entreprise.id %}">Modifier</a>
+            <a href="{% url 'delete-entreprise' entreprise.id %}">Supprimer</a>
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+{% endblock content %}

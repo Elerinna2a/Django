@@ -1,0 +1,10 @@
+{% extends 'app/layouts/main.html' %}
+
+{% block content %}
+<h1>Créer une réclamation</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Créer !</button>
+</form>
+{% endblock content %}

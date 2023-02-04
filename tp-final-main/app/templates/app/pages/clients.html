@@ -1,0 +1,18 @@
+{% extends 'app/layouts/main.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: start">
+    <h1>Clients</h1>
+    <a href="{% url 'create-client' %}" role="button">Créer un client</a>
+</div>
+{% for client in clients %}
+    <div style="display: flex; justify-content: space-between; align-items: start">
+        <a href="{% url 'client' client.id %}">{{client}}</a>
+        <div style="display: flex; gap: 2rem">
+            <a href="{% url 'update-client' client.id %}">Modifier</a>
+            <a href="{% url 'delete-client' client.id %}">Supprimer</a>
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+{% endblock content %}

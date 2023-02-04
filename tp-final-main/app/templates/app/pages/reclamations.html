@@ -1,0 +1,30 @@
+{% extends 'app/layouts/main.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: start">
+    <h1>Reclamations</h1>
+    <a href="{% url 'create-reclamation' %}" role="button">Créer un reclamation</a>
+</div>
+{% for reclamation in reclamations %}
+    <div style="display: flex; justify-content: space-between; align-items: start">
+        <div style="display: flex; gap: 2rem">
+            <a href="{% url 'reclamation' reclamation.id %}">{{reclamation}}</a>
+            {% if reclamation.traite %}
+                <small>Traité !</small>
+            {% else %}
+                <small>En cours de traitement...</small>
+            {% endif %}
+        </div>
+        <div style="display: flex; gap: 2rem">
+            {% if not reclamation.traite %}
+                <a href="{% url 'validate-reclamation' reclamation.id %}">Valider</a>
+            {% else %}
+                <a href="{% url 'devalidate-reclamation' reclamation.id %}">Dévalider</a>
+            {% endif %}
+            <a href="{% url 'update-reclamation' reclamation.id %}">Modifier</a>
+            <a href="{% url 'delete-reclamation' reclamation.id %}">Supprimer</a>
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+{% endblock content %}
